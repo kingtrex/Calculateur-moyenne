@@ -1,9 +1,11 @@
-#include <iostream>
+
+#include "header.h"
 
 int main()
 {
-    std::cout << "YAAAA :)" << std::endl;
-    std::cout << "cc :)" << std::endl;
-    system("pause");
-    return 0;
+    string nom = "Maths";
+
+    Matiere test(nom , 4.5);
+    cout << test.getNom() << endl;
 }
+//C:\\Users\\ttann\\OneDrive\\Documents\\GitHub\\Calculateur-moyenne\\test.txt
