@@ -6,5 +6,4 @@
 #include <vector>
 #include <unordered_map>
 #include "Matiere.h"
-using namespace std;
 #endif

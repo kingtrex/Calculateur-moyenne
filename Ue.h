@@ -5,19 +5,19 @@
 
 class Ue{
     private:
-    string nom;
-    vector<Matiere> matiere;
+    std::string nom;
+    std::vector<Matiere> matiere;
 
     public:
     //constructeur,destructeur
-    Ue(string nom);
+    Ue(std::string nom);
     ~Ue();
     
     //geteur
-    string getNom();
+    std::string getNom();
     
     //setteur
-    void setNom(string nom);
+    void setNom(std::string nom);
     //méthode matière
     
     int calcul_moyenne();

@@ -2,12 +2,12 @@
 #define MATIERRE_CPP
 #include "Matiere.h"
 
-Matiere::Matiere(string nom, double coef){
+Matiere::Matiere(std::string nom, double coef){
     this->nom = nom;
     this->coef = coef;
 }
 
-void Matiere::setNom(string nom){
+void Matiere::setNom(std::string nom){
     this->nom = nom;
 }
 void Matiere::setCoef(double coef){
@@ -29,7 +29,7 @@ double Matiere::getMoyenne(){
     return (double)totalNote/note.size();
 }
 
-string Matiere::getNom(){
+std::string Matiere::getNom(){
     return this->nom;
 }
 
