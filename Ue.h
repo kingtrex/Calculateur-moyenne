@@ -10,18 +10,18 @@ class Ue{
 
     public:
     //constructeur,destructeur
-    Ue(std::string nom);
+    Ue(std::string nom): nom(nom){}
     ~Ue();
     
     //geteur
-    std::string getNom();
+    std::string getNom() {return this->nom;}
+    std::vector<std::string> getMatiere();
     
     //setteur
-    void setNom(std::string nom);
+    void setNom(std::string nom) {this->nom = nom;};
     //méthode matière
     
-    int calcul_moyenne();
-    
+    int calculMoyenne();
     
 };
 #endif

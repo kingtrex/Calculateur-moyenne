@@ -6,4 +6,6 @@
 #include <vector>
 #include <unordered_map>
 #include "Matiere.h"
+#include "Ue.h"
+#include "Note.h"
 #endif

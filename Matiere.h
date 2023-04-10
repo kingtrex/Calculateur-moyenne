@@ -1,25 +1,25 @@
 #ifndef MATIERE_H
 #define MATIERE_H
 #include "header.h"
-#include <string>
 
 
-class Matiere{
+
+class Matiere: public Ue{
     private:
-    std::string nom;
+    
     double coef;
-    std::vector<double> note;
+    std::vector<Note> note;
     double moyenne;
 
     public:
-    Matiere(std::string nom, double coef);
+    Matiere(std::string nom, double coef): Ue(nom), coef(coef){}
     ~Matiere();
 
-    void setNom(std::string nom);
     void setCoef(double coef);
-    void addNote(double note);
+    void addNote(double note, double pourcentage);
 
     double getMoyenne();
     std::string getNom();
+    double getCoef(){return this->coef;}
 };
 #endif

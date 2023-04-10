@@ -1,31 +1,39 @@
-#include <SFML/Graphics.hpp>
+#include "header.h"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(sf::Vector2u(200, 200)), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
 
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
+    std::string ligne;
+    std::vector<Ue> ue;
+    std::ifstream fileUe;
+    fileUe.open("fichierUe.txt");
+    if(fileUe){
+        std::vector<std::string> data;
+        //récuperer les Ue
+        while(getline(fileUe, ligne)){
+            ue.push_back(Ue(ligne));
         }
-
-        window.clear();
-        window.draw(shape);
-        window.display();
+        fileUe.close();
     }
 
+    std::cout << "Que voulez vous faire?" << std::endl;
+    std::cout << "1: voir les UE et les matières" << std::endl;
+    std::cout << "2: ajouter un nouvel UE" << std::endl;
+    std::cout << "3: modifier un UE" << std::endl;
+
+    int action;
+    std::cin >> action;
+    switch(action){
+        case 1:
+            if(ue.size() == 0){
+                std::cout << "Aucun UE enregistré." << std::endl;
+                break;
+            }
+            //for(int i = 0; i < ue.size() ; i++) 
+
+    }
+
+    std::ifstream file;
+    
     return 0;
 }
-//C:\\Users\\ttann\\OneDrive\\Documents\\GitHub\\Calculateur-moyenne\\test.txt
-/*std::string nom = "Maths";
-    int *a = new int;
-    *a = 5;
-    Matiere test(nom , 4.5);
-    std::cout << test.getNom() << std::endl;
-    delete a;*/
