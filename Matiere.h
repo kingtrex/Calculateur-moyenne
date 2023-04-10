@@ -16,7 +16,7 @@ class Matiere: public Ue{
     ~Matiere();
 
     void setCoef(double coef);
-    void addNote(double note, double pourcentage);
+    void addNote(double note, double pourcentage, std::string label);
 
     double getMoyenne();
     std::string getNom();
