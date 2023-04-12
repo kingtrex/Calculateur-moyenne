@@ -1,10 +1,11 @@
 #ifndef MATIERE_H
 #define MATIERE_H
 #include "header.h"
+#include "Ue.h"
+#include "Note.h"
 
-
-
-class Matiere: public Ue{
+class Matiere: public Ue 
+{
     private:
     
     double coef;
