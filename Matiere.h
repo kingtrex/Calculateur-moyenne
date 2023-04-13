@@ -22,6 +22,7 @@ class Matiere: public Ue
 
     double getMoyenne();
     double getCoef(){return this->coef;}
+    void getNote();
     std::string getUe(){return this->lien.getNom();}
 };
 #endif

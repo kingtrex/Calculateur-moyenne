@@ -69,7 +69,13 @@ int main()
                 for(int i = 0; i < ue.size() ; i++){
                     std::cout << "Ue: " << ue[i].getNom() << std::endl;
                     for(int j = 0; j < matiere.size(); j++){
-                        if(matiere[j].getUe() == ue[i].getNom()) std::cout << " " << matiere[j].getNom() << "Coef: " << matiere[j].getCoef() << std::endl;
+                        //afficher les matière de l'Ue
+                        if(matiere[j].getUe() == ue[i].getNom()){ 
+                            std::cout << " " << matiere[j].getNom() << "Coef: " << matiere[j].getCoef() << std::endl;
+                            //afficher les notes de cet Ue
+                            matiere[j].getNote();
+                        }
+
                     }
                 }
                 break;
@@ -99,13 +105,16 @@ int main()
                 std::cout << "Que voulez-vous faire?" << std::endl;
                 std::cout << "0: retour" << std::endl;
                 std::cout << "1: ajouter une matiere" << std::endl;
-
+                std::cout << "2: ajouter une note" << std::endl;
                 std::cin >> action3;
+                std::string nomMatiere;
+
                 switch(action3){
+                    
                     //ajouter une matière
                     case 1:
                         std::cout << "Comment voulez-vous appeler cette matière?" << std::endl;
-                        std::string nomMatiere;
+                        
                         std::cin >> nomMatiere;
                         std::cout << "Quel sera son coef?" << std::endl;
                         double coef;
@@ -113,6 +122,27 @@ int main()
 
                         matiere.push_back(Matiere(nomMatiere, coef, ue[action2]));
                         std::cout << "retour au menu principal" << std::endl;
+
+                    case 2:
+                        std::cout << "Ajouter une note a quel matiere?" << std::endl;
+                        for(int i = 0; i < matiere.size(); i++){
+                            std::cout << i << " Ue: " + matiere[i].getUe() << " Matiere: " << matiere[i].getNom() << std::endl;
+                        }
+                        int choixMatiere;
+                        std::cin >> choixMatiere;
+                        if(!(choixMatiere < 0 || choixMatiere >= matiere.size())){
+                            std::string libelle;
+                            std::cout << "Quel sera le libelle de la note?" << std::endl;
+                            std::cin >> libelle;
+                            double note, pourcentage;
+                            std::cout << "Quel note?" << std::endl;
+                            std::cin >> note;
+                            std::cout << "Quel pourcentage de la note finale?" << std::endl;
+                            std::cin >> pourcentage;
+
+                            matiere[choixMatiere].addNote(note, pourcentage, libelle);
+                        }else std::cout << "Erreur: matiere introuvable, retour au menu principal" <<std::endl;
+                        break;
                 }
 
             break;

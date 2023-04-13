@@ -23,4 +23,9 @@ double Matiere::getMoyenne(){
     return (double)totalNote/100;
 }
 
+void Matiere::getNote(){
+    for(int i = 0; i < this->note.size(); i++){
+        std::cout << "  " + note[i].getNom() + " " << note[i].getNote() << "/20 " << note[i].getPourcentage() << "%" << std::endl;
+    }
+}
 
