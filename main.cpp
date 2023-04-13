@@ -1,16 +1,13 @@
 #include "header.h"
 #include "Ue.h"
 #include "Matiere.h"
-int main()
-{
 
-    std::string ligne;
+std::vector<Ue> recupUe(){
     std::vector<Ue> ue;
-    std::vector<Matiere> matiere;
-    //récupérer les Ue de la dernière execution
     std::ifstream recupUe;
     recupUe.open("fichierUe.txt");
     if(recupUe){
+        std::string ligne;
         std::cout << "fichier ouvert" << std::endl;
         //récuperer les Ue
         while(getline(recupUe, ligne)){
@@ -18,14 +15,20 @@ int main()
             ue.push_back(Ue(ligne));
         }
         recupUe.close();
+        return ue;
     }
+    
+}
 
-    //récupérér les matières de la dernère execution
+std::vector<Matiere> recupMatiere(std::vector<Ue> &ue){
+
     std::ifstream recupMatiere;
     recupMatiere.open("fichierMatiere.txt");
     if(recupMatiere){
+        std::vector<Matiere> matiere;
         std::vector<std::string> data;
         std::string separateur = " ";
+        std::string ligne;
         size_t pos = 0;
         //récupérer les matières
         while(getline(recupMatiere, ligne)){
@@ -44,7 +47,18 @@ int main()
             }
             matiere.push_back(Matiere(data[1], std::stod(data[2]), ue[indice]));
         }
+        recupMatiere.close();
+        return matiere;
     }
+}
+
+int main()
+{
+
+    //récupérer les Ue de la dernière execution
+    std::vector<Ue> ue = recupUe();
+    //récupérér les matières de la dernère execution
+    std::vector<Matiere> matiere = recupMatiere(ue);
 
     int action;
     std::string nom;
@@ -71,7 +85,7 @@ int main()
                     for(int j = 0; j < matiere.size(); j++){
                         //afficher les matière de l'Ue
                         if(matiere[j].getUe() == ue[i].getNom()){ 
-                            std::cout << " " << matiere[j].getNom() << "Coef: " << matiere[j].getCoef() << std::endl;
+                            std::cout << " " << matiere[j].getNom() << " Coef: " << matiere[j].getCoef() << std::endl;
                             //afficher les notes de cet Ue
                             matiere[j].getNote();
                         }
