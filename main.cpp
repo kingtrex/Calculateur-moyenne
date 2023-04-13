@@ -12,13 +12,38 @@ int main()
     recupUe.open("fichierUe.txt");
     if(recupUe){
         std::cout << "fichier ouvert" << std::endl;
-        std::vector<std::string> data;
         //récuperer les Ue
         while(getline(recupUe, ligne)){
 
             ue.push_back(Ue(ligne));
         }
         recupUe.close();
+    }
+
+    //récupérér les matières de la dernère execution
+    std::ifstream recupMatiere;
+    recupMatiere.open("fichierMatiere.txt");
+    if(recupMatiere){
+        std::vector<std::string> data;
+        std::string separateur = " ";
+        size_t pos = 0;
+        //récupérer les matières
+        while(getline(recupMatiere, ligne)){
+            //obtenir les différentes données de la ligne
+            while((pos = ligne.find(separateur)) != std::string::npos){
+                data.push_back(ligne.substr(0, pos));
+                ligne.erase(0, pos + separateur.size());
+            }
+            //trouver l'ID de l'Ue de la matière
+            int indice;
+            for(int i = 0; i < ue.size(); i++){
+                if(ue[i].getNom() == data[0]){ 
+                    indice = i; 
+                    break;
+                }
+            }
+            matiere.push_back(Matiere(data[1], std::stod(data[2]), ue[indice]));
+        }
     }
 
     int action;
@@ -29,7 +54,7 @@ int main()
         std::cout << "1: voir les UE et les matières" << std::endl;
         std::cout << "2: ajouter un nouvel UE" << std::endl;
         std::cout << "3: modifier un UE" << std::endl;
-
+        //inserez de nouvelles options ici
         std::cout << "0: sauvegarder et quitter" << std::endl;
 
         std::cin >> action;
@@ -44,7 +69,7 @@ int main()
                 for(int i = 0; i < ue.size() ; i++){
                     std::cout << "Ue: " << ue[i].getNom() << std::endl;
                     for(int j = 0; j < matiere.size(); j++){
-                        if(matiere[j].getUe() == ue[i].getNom()) std::cout << " " << matiere[j].getNom() << std::endl;
+                        if(matiere[j].getUe() == ue[i].getNom()) std::cout << " " << matiere[j].getNom() << "Coef: " << matiere[j].getCoef() << std::endl;
                     }
                 }
                 break;
@@ -91,7 +116,7 @@ int main()
                 }
 
             break;
-
+            //ajouter les case ici
         }
     }while(action != 0);
 
