@@ -11,16 +11,17 @@ class Matiere: public Ue
     double coef;
     std::vector<Note> note;
     double moyenne;
+    Ue &lien;
 
     public:
-    Matiere(std::string nom, double coef): Ue(nom), coef(coef){}
-    ~Matiere();
+    Matiere(std::string nom, double coef, Ue &lien): Ue(nom), coef(coef), lien(lien){}
+    ~Matiere(){};
 
     void setCoef(double coef);
     void addNote(double note, double pourcentage, std::string label);
 
     double getMoyenne();
-    std::string getNom();
     double getCoef(){return this->coef;}
+    std::string getUe(){return this->lien.getNom();}
 };
 #endif

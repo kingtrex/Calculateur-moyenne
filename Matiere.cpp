@@ -23,18 +23,4 @@ double Matiere::getMoyenne(){
     return (double)totalNote;
 }
 
-std::string Matiere::getNom(){
-    return this->getNom();
-}
 
-Matiere::~Matiere(){
-    std::ofstream file;
-    file.open("Matiere " + this->getNom() + "Note(s)");
-    if(file){
-        for(int i = 0; i < this->note.size(); i++) file << this->note[i].getNote() << std::endl << this->note[i].getPourcentage();
-        file.close();
-    }else{
-        std::cout << "Erreur: impossible de sauvegarder les note de la matière \"" << this->getNom() << "\"... " << std::endl;
-        std::cin;
-    }
-}
