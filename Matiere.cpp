@@ -20,7 +20,7 @@ double Matiere::getMoyenne(){
     for(int i = 0; i < note.size(); i++){
         totalNote += note[i].getNote() * note[i].getPourcentage();
     }
-    return (double)totalNote;
+    return (double)totalNote/100;
 }
 
 
