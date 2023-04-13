@@ -44,7 +44,7 @@ int main()
                 for(int i = 0; i < ue.size() ; i++){
                     std::cout << "Ue: " << ue[i].getNom() << std::endl;
                     for(int j = 0; j < matiere.size(); j++){
-                        if(matiere[j].getUe() == ue[i].getNom()) std::cout << matiere[j].getNom() << std::endl;
+                        if(matiere[j].getUe() == ue[i].getNom()) std::cout << " " << matiere[j].getNom() << std::endl;
                     }
                 }
                 break;
@@ -77,27 +77,22 @@ int main()
 
                 std::cin >> action3;
                 switch(action3){
+                    //ajouter une matière
                     case 1:
-                        std::string nomMatiere;
-                        double coef;
                         std::cout << "Comment voulez-vous appeler cette matière?" << std::endl;
+                        std::string nomMatiere;
                         std::cin >> nomMatiere;
                         std::cout << "Quel sera son coef?" << std::endl;
+                        double coef;
                         std::cin >> coef;
 
                         matiere.push_back(Matiere(nomMatiere, coef, ue[action2]));
                         std::cout << "retour au menu principal" << std::endl;
                 }
 
-
-
-                
-                
-
             break;
 
         }
-
     }while(action != 0);
 
     //sauvegarder les Ue pour la prochaine execution
@@ -107,5 +102,12 @@ int main()
         saveUe << ue[i].getNom() << std::endl;
     }
     saveUe.close();
+    //sauvegarder les matière pour la prochaine execution
+    std::ofstream saveMatiere;
+    saveMatiere.open("fichierMatiere.txt");
+    for(int i = 0; i < matiere.size(); i++){
+        saveMatiere << matiere[i].getUe() << " " << matiere[i].getNom() << " " << matiere[i].getCoef() << " " << std::endl;
+    }
+    saveMatiere.close();
     return 0;
 }
