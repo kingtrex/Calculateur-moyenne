@@ -52,6 +52,30 @@ std::vector<Matiere> recupMatiere(std::vector<Ue> &ue){
     }
 }
 
+void saveData(std::vector<Ue> ue, std::vector<Matiere> matiere){
+    //sauvegarder les Ue pour la prochaine execution
+    std::ofstream saveUe;
+    saveUe.open("fichierUe.txt");
+    for(int i = 0; i < ue.size(); i++){
+        saveUe << ue[i].getNom() << std::endl;
+    }
+    saveUe.close();
+    //sauvegarder les matière pour la prochaine execution
+    std::ofstream saveMatiere;
+    saveMatiere.open("fichierMatiere.txt");
+    for(int i = 0; i < matiere.size(); i++){
+        saveMatiere << matiere[i].getUe() << " " << matiere[i].getNom() << " " << matiere[i].getCoef() << " " << std::endl;
+    }
+    saveMatiere.close();
+
+    //sauvegarde des notes pour la prochaine execution
+    std::ofstream saveNote;
+    saveNote.open("fichierNote.txt");
+    for(int i = 0; i < matiere.size(); i++){
+        matiere[i].saveNote(saveNote);
+    }
+}
+
 int main()
 {
 
@@ -164,26 +188,7 @@ int main()
         }
     }while(action != 0);
 
-    //sauvegarder les Ue pour la prochaine execution
-    std::ofstream saveUe;
-    saveUe.open("fichierUe.txt");
-    for(int i = 0; i < ue.size(); i++){
-        saveUe << ue[i].getNom() << std::endl;
-    }
-    saveUe.close();
-    //sauvegarder les matière pour la prochaine execution
-    std::ofstream saveMatiere;
-    saveMatiere.open("fichierMatiere.txt");
-    for(int i = 0; i < matiere.size(); i++){
-        saveMatiere << matiere[i].getUe() << " " << matiere[i].getNom() << " " << matiere[i].getCoef() << " " << std::endl;
-    }
-    saveMatiere.close();
+    saveData(ue, matiere);
 
-    //sauvegarde des notes pour la prochaine execution
-    std::ofstream saveNote;
-    saveNote.open("fichierNote.txt");
-    for(int i = 0; i < matiere.size(); i++){
-        matiere[i].saveNote(saveNote);
-    }
     return 0;
 }
