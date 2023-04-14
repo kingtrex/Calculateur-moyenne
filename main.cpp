@@ -100,6 +100,7 @@ int main()
             std::cout << "Aucun UE enregistré." << std::endl;
             continue;
         }
+        std::string nom;
         switch(action){
             //Afficher les Ue
             case 1:
@@ -120,7 +121,7 @@ int main()
             //enregistrer un nouvel Ue
             case 2:
                 std::cout << "Saisissez un nom: ";
-                std::cin >> nom;
+                std::getline(std::cin >> std::ws, nom);
                 ue.push_back(Ue(nom));
                 break;
             //modifier un Ue

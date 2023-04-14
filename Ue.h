@@ -8,7 +8,7 @@ class Ue{
 
     public:
     //constructeur,destructeur
-    Ue(std::string nom): nom(nom){}
+    Ue(std::string nom): nom(nom){this->verifNom();}
     ~Ue(){};
     
     //geteur
@@ -16,7 +16,7 @@ class Ue{
     //setteur
     void setNom(std::string nom){this->nom = nom;}
     //méthode matière
-    
+    void verifNom();
     
 };
 #endif

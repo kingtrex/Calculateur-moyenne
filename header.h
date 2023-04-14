@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
-
+#include <algorithm>
 //#include "Ue.h"
 /*#include "Matiere.h"
 #include "Note.h"*/
