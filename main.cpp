@@ -178,5 +178,12 @@ int main()
         saveMatiere << matiere[i].getUe() << " " << matiere[i].getNom() << " " << matiere[i].getCoef() << " " << std::endl;
     }
     saveMatiere.close();
+
+    //sauvegarde des notes pour la prochaine execution
+    std::ofstream saveNote;
+    saveNote.open("fichierNote.txt");
+    for(int i = 0; i < matiere.size(); i++){
+        matiere[i].saveNote(saveNote);
+    }
     return 0;
 }

@@ -29,3 +29,8 @@ void Matiere::getNote(){
     }
 }
 
+void Matiere::saveNote(std::ofstream &file){
+    for(int i = 0; i < this->note.size(); i++){
+        file << this->getNom() << " " << this->note[i].getData() << std::endl;
+    }
+}

@@ -1,7 +1,7 @@
 #ifndef NOTE_H
 #define NOTE_H
 #include "header.h"
-
+#include "Ue.h"
 class Note: public Ue{
     private:
     double note;
@@ -19,7 +19,7 @@ class Note: public Ue{
     void setPourcentage(int pourcentage){this->pourcentage = pourcentage;}
 
     //methode diverse
-    
+    std::string getData();
 
 };
 
