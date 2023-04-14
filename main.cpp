@@ -128,24 +128,30 @@ int main()
             case 3:
                 int action2;
                 std::cout << "Quel Ue voulez vous modifier?" << std::endl;
+                std::cout << "-1: retour" << std::endl;
                 //Afficher les Ue
                 for(int i = 0; i < ue.size(); i++){
-                    std::cout << i << ": " + ue[i].getNom() << std::endl;
+                        std::cout << i << ": " + ue[i].getNom() << std::endl;
+                }
+                std::cin >> action2;
+
+                //gestion des erreurs
+                while(std::cin.fail() || (action2 < -1 || action2 >= ue.size())){
+                    std::cin.clear();
+                    std::cin.ignore(1000, '\n');
+                    std::cout << "Input invalid" << std::endl;
+                    std::cin >> action2;
                 }
 
-                std::cin >> action2;
-                
-                if(action2 < 0 || action2 >= ue.size()){
-                    std::cout << "Erreur: Ue non-reconnu, retour au menu principal" << std::endl;
-                    break;
-                }
 
                 int action3;
-                std::cout << "Que voulez-vous faire?" << std::endl;
-                std::cout << "0: retour" << std::endl;
-                std::cout << "1: ajouter une matiere" << std::endl;
-                std::cout << "2: ajouter une note" << std::endl;
-                std::cin >> action3;
+                do{
+                    std::cout << "Que voulez-vous faire?" << std::endl;
+                    std::cout << "0: retour" << std::endl;
+                    std::cout << "1: ajouter une matiere" << std::endl;
+                    std::cout << "2: ajouter une note" << std::endl;
+                }while(!(std::cin >> action3));
+                
                 std::string nomMatiere;
 
                 switch(action3){
