@@ -52,6 +52,25 @@ std::vector<Matiere> recupMatiere(std::vector<Ue> &ue){
     }
 }
 
+void recupNote(std::vector<Matiere> &matiere){
+    std::ifstream file;
+    file.open("fichierNote.txt");
+    std::string ligne;
+    std::string separateur = " ";
+    std::vector<std::string> data;
+    size_t pos = 0;
+    while(getline(file, ligne)){
+        while((pos = ligne.find(separateur)) != std::string::npos){
+            data.push_back(ligne.substr(0, pos));
+            ligne.erase(0, pos + separateur.size());
+        }
+        data.push_back(ligne);
+        for(int i = 0; i < matiere.size(); i++){
+            if(data[0] == matiere[i].getNom()) matiere[i].addNote(std::stod(data[2]), std::stod(data[3]), data[1]);
+        }
+    }
+}
+
 void saveData(std::vector<Ue> ue, std::vector<Matiere> matiere){
     //sauvegarder les Ue pour la prochaine execution
     std::ofstream saveUe;
@@ -81,9 +100,10 @@ int main()
 
     //récupérer les Ue de la dernière execution
     std::vector<Ue> ue = recupUe();
-    //récupérér les matières de la dernère execution
+    //récupérer les matières de la dernère execution
     std::vector<Matiere> matiere = recupMatiere(ue);
-
+    //récupérer les notes de la dernière execution
+    recupNote(matiere);
     int action;
     std::string nom;
     do{
