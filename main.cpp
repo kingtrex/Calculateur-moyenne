@@ -46,6 +46,7 @@ std::vector<Matiere> recupMatiere(std::vector<Ue> &ue){
                 }
             }
             matiere.push_back(Matiere(data[1], std::stod(data[2]), ue[indice]));
+            data.clear();
         }
         recupMatiere.close();
         return matiere;
@@ -60,6 +61,7 @@ void recupNote(std::vector<Matiere> &matiere){
     std::vector<std::string> data;
     size_t pos = 0;
     while(getline(file, ligne)){
+        //récuperer les données de chaque ligne
         while((pos = ligne.find(separateur)) != std::string::npos){
             data.push_back(ligne.substr(0, pos));
             ligne.erase(0, pos + separateur.size());
@@ -68,6 +70,7 @@ void recupNote(std::vector<Matiere> &matiere){
         for(int i = 0; i < matiere.size(); i++){
             if(data[0] == matiere[i].getNom()) matiere[i].addNote(std::stod(data[2]), std::stod(data[3]), data[1]);
         }
+        data.clear();
     }
 }
 
