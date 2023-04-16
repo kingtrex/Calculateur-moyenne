@@ -7,15 +7,6 @@ void Matiere::setCoef(double coef){
     this->coef = coef;
 }
 
-double Matiere::calculMoyenne(){
-    
-    double totalNote = 0;
-
-    for(int i = 0; i < note.size(); i++){
-        totalNote += note[i].getNote() * note[i].getPourcentage();
-    }
-    return (double)totalNote/100;
-}
 
 void Matiere::getNote(){
     for(int i = 0; i < this->note.size(); i++){
@@ -50,7 +41,7 @@ void Matiere::verifPourcentage(){
         reparNote();
     }
 }
-
+//réparer les notes si la somme des pourcentage est dupérieur a 100
 void Matiere::reparNote(){
     do{
         std::cout << "Selectionner une note pour modifier le pourcentage:" << std::endl;
@@ -74,4 +65,29 @@ void Matiere::reparNote(){
         }
         note[choix].setPourcentage(choix2);
     }while(getTotalPourcentage() > 100);
+}
+//calculer la moyenne de la matère
+double Matiere::calculMoyenne(){
+    
+    double totalNote = 0;
+
+    for(int i = 0; i < note.size(); i++){
+        totalNote += note[i].getNote() * note[i].getPourcentage();
+    }
+    this->setMoyenne((double)totalNote/100);
+    return this->getMoyenne();
+}
+//calculer la moyenne de l'Ue
+double Matiere::calculMoyenne(std::vector<Matiere> matiere, std::string nom){
+    double num = 0;
+    double denom = 0;
+
+    for(int i = 0; i < matiere.size(); i++){
+        if(matiere[i].getNom() == nom){
+            num += calculMoyenne() * this->coef;
+            denom += coef;
+        }
+    }
+    this->setMoyenne(num/coef);
+    return this->getMoyenne();
 }

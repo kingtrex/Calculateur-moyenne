@@ -105,6 +105,19 @@ void saveData(std::vector<Ue> ue, std::vector<Matiere> matiere){
     return nom;
 }*/
 
+double moyenneUe(std::vector<Matiere> &matiere, Ue &ue){
+    double num = 0;
+    double denom = 0;
+
+    for(int i = 0; i < matiere.size(); i++){
+        if(matiere[i].getUe() == ue.getNom()){
+            num += (matiere[i].getMoyenne() * matiere[i].getCoef());
+            denom += matiere[i].getCoef();
+        }
+    }
+    return num/denom;
+}
+
 int main()
 {
 
@@ -114,6 +127,11 @@ int main()
     std::vector<Matiere> matiere = recupMatiere(ue);
     //récupérer les notes de la dernière execution
     recupNote(matiere);
+    //calculer la moyenne des matières
+    for(int i = 0; i < matiere.size(); i++){
+        matiere[i].calculMoyenne();
+    }
+    
     int action;
     std::string nom;
     do{
@@ -126,6 +144,7 @@ int main()
         std::cout << "0: sauvegarder et quitter" << std::endl;
 
         std::cin >> action;
+        //action = 1;
         if(action == 1 | action == 3 && ue.size() == 0){
             std::cout << "Aucun UE enregistré." << std::endl;
             continue;
@@ -136,7 +155,7 @@ int main()
             case 1:
                 //Afficher tout les Ue
                 for(int i = 0; i < ue.size() ; i++){
-                    std::cout << "Ue: " << ue[i].getNom() << std::endl;
+                    std::cout << "Ue: " << ue[i].getNom() << " Moyenne: " << moyenneUe(matiere, ue[i]) << std::endl;
                     for(int j = 0; j < matiere.size(); j++){
                         //afficher les matière de l'Ue
                         if(matiere[j].getUe() == ue[i].getNom()){ 

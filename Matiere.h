@@ -10,7 +10,6 @@ class Matiere: public Ue
     
     double coef;
     std::vector<Note> note;
-    double moyenne;
     Ue &lien;
 
     public:
@@ -28,5 +27,6 @@ class Matiere: public Ue
     void verifPourcentage();
     void reparNote();
     double calculMoyenne();
+    double calculMoyenne(std::vector<Matiere> matiere, std::string nom);
 };
 #endif
