@@ -25,6 +25,7 @@ std::vector<Matiere> recupMatiere(std::vector<Ue> &ue){
     std::ifstream recupMatiere;
     recupMatiere.open("fichierMatiere.txt");
     if(recupMatiere){
+        
         std::vector<Matiere> matiere;
         std::vector<std::string> data;
         std::string separateur = " ";
@@ -97,6 +98,12 @@ void saveData(std::vector<Ue> ue, std::vector<Matiere> matiere){
         matiere[i].saveNote(saveNote);
     }
 }
+
+/*std::string verifNom(std::string nom){
+    std::replace(nom.begin(), nom.end(), ' ', '_');
+    std::cout << "nom finale: " << nom << std::endl;
+    return nom;
+}*/
 
 int main()
 {
@@ -183,14 +190,15 @@ int main()
                     case 1:
                         std::cout << "Comment voulez-vous appeler cette matière?" << std::endl;
                         
-                        std::cin >> nomMatiere;
+                        std::getline(std::cin >> std::ws, nomMatiere);
                         std::cout << "Quel sera son coef?" << std::endl;
                         double coef;
+
                         std::cin >> coef;
 
                         matiere.push_back(Matiere(nomMatiere, coef, ue[action2]));
                         std::cout << "retour au menu principal" << std::endl;
-
+                        break;
                     case 2:
                         std::cout << "Ajouter une note a quel matiere?" << std::endl;
                         for(int i = 0; i < matiere.size(); i++){
@@ -201,7 +209,7 @@ int main()
                         if(!(choixMatiere < 0 || choixMatiere >= matiere.size())){
                             std::string libelle;
                             std::cout << "Quel sera le libelle de la note?" << std::endl;
-                            std::cin >> libelle;
+                            std::getline(std::cin >> std::ws, libelle);
                             double note, pourcentage;
                             std::cout << "Quel note?" << std::endl;
                             std::cin >> note;

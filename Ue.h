@@ -8,7 +8,7 @@ class Ue{
 
     public:
     //constructeur,destructeur
-    Ue(std::string nom): nom(nom){this->verifNom();}
+    Ue(std::string nom): nom(nom){verifNom();}
     ~Ue(){};
     
     //geteur
