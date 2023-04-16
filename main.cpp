@@ -140,7 +140,7 @@ int main()
                     for(int j = 0; j < matiere.size(); j++){
                         //afficher les matière de l'Ue
                         if(matiere[j].getUe() == ue[i].getNom()){ 
-                            std::cout << " " << matiere[j].getNom() << " Coef: " << matiere[j].getCoef() << std::endl;
+                            std::cout << " " << matiere[j].getNom() << " Coef: " << matiere[j].getCoef() << " Moyenne: " << matiere[j].calculMoyenne() << std::endl;
                             //afficher les notes de cet Ue
                             matiere[j].getNote();
                         }

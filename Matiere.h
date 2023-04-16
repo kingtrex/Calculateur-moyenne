@@ -20,7 +20,6 @@ class Matiere: public Ue
     void setCoef(double coef);
     void addNote(double note, double pourcentage, std::string label);
 
-    double getMoyenne();
     double getCoef(){return this->coef;}
     void getNote();
     std::string getUe(){return this->lien.getNom();}
@@ -28,6 +27,6 @@ class Matiere: public Ue
     void saveNote(std::ofstream &file);
     void verifPourcentage();
     void reparNote();
-    
+    double calculMoyenne();
 };
 #endif

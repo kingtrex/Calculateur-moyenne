@@ -7,7 +7,7 @@ void Matiere::setCoef(double coef){
     this->coef = coef;
 }
 
-double Matiere::getMoyenne(){
+double Matiere::calculMoyenne(){
     
     double totalNote = 0;
 
