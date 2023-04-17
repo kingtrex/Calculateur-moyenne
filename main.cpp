@@ -25,6 +25,7 @@ std::vector<Matiere> recupMatiere(std::vector<Ue> &ue){
     std::ifstream recupMatiere;
     recupMatiere.open("fichierMatiere.txt");
     if(recupMatiere){
+        
         std::vector<Matiere> matiere;
         std::vector<std::string> data;
         std::string separateur = " ";
@@ -46,9 +47,31 @@ std::vector<Matiere> recupMatiere(std::vector<Ue> &ue){
                 }
             }
             matiere.push_back(Matiere(data[1], std::stod(data[2]), ue[indice]));
+            data.clear();
         }
         recupMatiere.close();
         return matiere;
+    }
+}
+
+void recupNote(std::vector<Matiere> &matiere){
+    std::ifstream file;
+    file.open("fichierNote.txt");
+    std::string ligne;
+    std::string separateur = " ";
+    std::vector<std::string> data;
+    size_t pos = 0;
+    while(getline(file, ligne)){
+        //récuperer les données de chaque ligne
+        while((pos = ligne.find(separateur)) != std::string::npos){
+            data.push_back(ligne.substr(0, pos));
+            ligne.erase(0, pos + separateur.size());
+        }
+        data.push_back(ligne);
+        for(int i = 0; i < matiere.size(); i++){
+            if(data[0] == matiere[i].getNom()) matiere[i].addNote(std::stod(data[2]), std::stod(data[3]), data[1]);
+        }
+        data.clear();
     }
 }
 
@@ -76,8 +99,17 @@ void saveData(std::vector<Ue> ue, std::vector<Matiere> matiere){
     }
 }
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+/*std::string verifNom(std::string nom){
+    std::replace(nom.begin(), nom.end(), ' ', '_');
+    std::cout << "nom finale: " << nom << std::endl;
+    return nom;
+}*/
+
+>>>>>>> main
 double moyenneUe(std::vector<Matiere> &matiere, Ue &ue){
     double num = 0;
     double denom = 0;
@@ -91,15 +123,24 @@ double moyenneUe(std::vector<Matiere> &matiere, Ue &ue){
     return num/denom;
 }
 
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> main
 int main()
 {
 
     //récupérer les Ue de la dernière execution
     std::vector<Ue> ue = recupUe();
-    //récupérér les matières de la dernère execution
+    //récupérer les matières de la dernère execution
     std::vector<Matiere> matiere = recupMatiere(ue);
-
+    //récupérer les notes de la dernière execution
+    recupNote(matiere);
+    //calculer la moyenne des matières
+    for(int i = 0; i < matiere.size(); i++){
+        matiere[i].calculMoyenne();
+    }
+    
     int action;
     std::string nom;
     do{
@@ -112,6 +153,7 @@ int main()
         std::cout << "0: sauvegarder et quitter" << std::endl;
 
         std::cin >> action;
+        //action = 1;
         if(action == 1 | action == 3 && ue.size() == 0){
             std::cout << "Aucun UE enregistré." << std::endl;
             continue;
@@ -130,12 +172,12 @@ int main()
             case 1:
                 //Afficher tout les Ue
                 for(int i = 0; i < ue.size() ; i++){
-                    std::cout << "Ue: " << ue[i].getNom() << std::endl;
+                    std::cout << "Ue: " << ue[i].getNom() << " Moyenne: " << moyenneUe(matiere, ue[i]) << std::endl;
                     for(int j = 0; j < matiere.size(); j++){
                         //afficher les matière de l'Ue
                         std::cout << "afficher matieres" << std::endl;
                         if(matiere[j].getUe() == ue[i].getNom()){ 
-                            std::cout << " " << matiere[j].getNom() << " Coef: " << matiere[j].getCoef() << std::endl;
+                            std::cout << " " << matiere[j].getNom() << " Coef: " << matiere[j].getCoef() << " Moyenne: " << matiere[j].calculMoyenne() << std::endl;
                             //afficher les notes de cet Ue
                             matiere[j].getNote();
                         }
@@ -185,14 +227,15 @@ int main()
                     case 1:
                         std::cout << "Comment voulez-vous appeler cette matière?" << std::endl;
                         
-                        std::cin >> nomMatiere;
+                        std::getline(std::cin >> std::ws, nomMatiere);
                         std::cout << "Quel sera son coef?" << std::endl;
                         double coef;
+
                         std::cin >> coef;
 
                         matiere.push_back(Matiere(nomMatiere, coef, ue[action2]));
                         std::cout << "retour au menu principal" << std::endl;
-
+                        break;
                     case 2:
                         std::cout << "Ajouter une note a quel matiere?" << std::endl;
                         for(int i = 0; i < matiere.size(); i++){
@@ -203,7 +246,7 @@ int main()
                         if(!(choixMatiere < 0 || choixMatiere >= matiere.size())){
                             std::string libelle;
                             std::cout << "Quel sera le libelle de la note?" << std::endl;
-                            std::cin >> libelle;
+                            std::getline(std::cin >> std::ws, libelle);
                             double note, pourcentage;
                             std::cout << "Quel note?" << std::endl;
                             std::cin >> note;

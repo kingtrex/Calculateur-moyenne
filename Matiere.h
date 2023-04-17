@@ -10,7 +10,6 @@ class Matiere: public Ue
     
     double coef;
     std::vector<Note> note;
-    double moyenne;
     Ue &lien;
 
     public:
@@ -20,10 +19,14 @@ class Matiere: public Ue
     void setCoef(double coef);
     void addNote(double note, double pourcentage, std::string label);
 
-    double getMoyenne();
     double getCoef(){return this->coef;}
     void getNote();
-    void saveNote(std::ofstream &file);
     std::string getUe(){return this->lien.getNom();}
+    int getTotalPourcentage();
+    void saveNote(std::ofstream &file);
+    void verifPourcentage();
+    void reparNote();
+    double calculMoyenne();
+    double calculMoyenne(std::vector<Matiere> matiere, std::string nom);
 };
 #endif
