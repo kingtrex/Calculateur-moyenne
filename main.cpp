@@ -11,7 +11,7 @@ std::vector<Ue> recupUe(){
         std::cout << "fichier ouvert" << std::endl;
         //récuperer les Ue
         while(getline(recupUe, ligne)){
-
+            std::cout << "ajout de l'Ue " << ligne << std::endl; 
             ue.push_back(Ue(ligne));
         }
         recupUe.close();
@@ -76,6 +76,22 @@ void saveData(std::vector<Ue> ue, std::vector<Matiere> matiere){
     }
 }
 
+<<<<<<< Updated upstream
+=======
+double moyenneUe(std::vector<Matiere> &matiere, Ue &ue){
+    double num = 0;
+    double denom = 0;
+
+    for(int i = 0; i < matiere.size(); i++){
+        if(matiere[i].getUe() == ue.getNom()){
+            num += (matiere[i].getMoyenne() * matiere[i].getCoef());
+            denom += matiere[i].getCoef();
+        }
+    }
+    return num/denom;
+}
+
+>>>>>>> Stashed changes
 int main()
 {
 
@@ -101,6 +117,14 @@ int main()
             continue;
         }
         std::string nom;
+        
+        while(std::cin.fail()){
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
+            std::cout << "Input invalid" << std::endl;
+            std::cin >> action;
+        }
+
         switch(action){
             //Afficher les Ue
             case 1:
@@ -109,6 +133,7 @@ int main()
                     std::cout << "Ue: " << ue[i].getNom() << std::endl;
                     for(int j = 0; j < matiere.size(); j++){
                         //afficher les matière de l'Ue
+                        std::cout << "afficher matieres" << std::endl;
                         if(matiere[j].getUe() == ue[i].getNom()){ 
                             std::cout << " " << matiere[j].getNom() << " Coef: " << matiere[j].getCoef() << std::endl;
                             //afficher les notes de cet Ue
