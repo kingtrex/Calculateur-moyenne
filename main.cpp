@@ -131,7 +131,7 @@ int main()
     do{
         
         std::cout << "Que voulez vous faire?" << std::endl;
-        std::cout << "1: voir les UE et les matières" << std::endl;
+        std::cout << "1: voir les UE et les matieres" << std::endl;
         std::cout << "2: ajouter un nouvel UE" << std::endl;
         std::cout << "3: modifier un UE" << std::endl;
         //inserez de nouvelles options ici
@@ -140,7 +140,7 @@ int main()
         std::cin >> action;
         //action = 1;
         if(action == 1 | action == 3 && ue.size() == 0){
-            std::cout << "Aucun UE enregistré." << std::endl;
+            std::cout << "Aucun UE enregistre." << std::endl;
             continue;
         }
         std::string nom;
@@ -205,8 +205,8 @@ int main()
                     
                     //ajouter une matière
                     case 1:
-                        std::cout << "Comment voulez-vous appeler cette matière?" << std::endl;
-                        
+                        std::cout << "Comment voulez-vous appeler cette matiere?" << std::endl;
+                        //consider les espaces comme inclus dans la saisie
                         std::getline(std::cin >> std::ws, nomMatiere);
                         std::cout << "Quel sera son coef?" << std::endl;
                         double coef;
