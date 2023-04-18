@@ -100,18 +100,9 @@ void saveData(std::vector<Ue> ue, std::vector<Matiere> matiere){
 double moyenneUe(std::vector<Matiere> &matiere, Ue &ue, std::vector<Ue> &ueTest){
     double num = 0;
     double denom = 0;
-    //probleme dans cette fonction: perte de réference quand il y a plusieurs Ue
-    /*std::cout << "moyenne de: " << ue.getNom() << std::endl;
-    std::cout << "nb Matiere dans fonction: " << matiere.size() << std::endl;
-
-    for(int i = 0; i < ueTest.size(); i++){
-        std::cout << "Ue " << i << ": " << ueTest[i].getNom() << std::endl;
-    } */
 
     for(int i = 0; i < matiere.size(); i++){
-        /*std::cout << "Boucle: " << matiere[i].getNom() << " " << ue.getNom() << std::endl;
-        std::cout << matiere[i].getUe() << std::endl;
-        std::cout << "1" << std::endl;*/
+
         if(matiere[i].getUe() == ue.getNom()){
             num += (matiere[i].getMoyenne() * matiere[i].getCoef());
             denom += matiere[i].getCoef();
@@ -153,21 +144,12 @@ int main()
             continue;
         }
         std::string nom;
-        /*
-        while(std::cin.fail()){
-            std::cin.clear();
-            std::cin.ignore(1000, '\n');
-            std::cout << "Input invalid" << std::endl;
-            std::cin >> action;
-        }*/
 
         switch(action){
             //Afficher les Ue
             case 1:
                 //Afficher tout les Ue
                 for(int i = 0; i < ue.size() ; i++){
-                    /*std::cout << "Nb matiere: " << matiere.size() << std::endl;
-                    std::cout << "affichage Ue" << std::endl;*/
                     std::cout << "Ue: " << ue[i].getNom() << std::endl;
                     std::cout << " Moyenne: " << moyenneUe(matiere, ue[i], ue) << std::endl;
                     for(int j = 0; j < matiere.size(); j++){
