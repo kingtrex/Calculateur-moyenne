@@ -5,3 +5,4 @@ void Ue::verifNom(){
     std::replace(name.begin(), name.end(), ' ', '_');
     this->setNom(name);
 }
+

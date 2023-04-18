@@ -8,10 +8,8 @@ std::vector<Ue> recupUe(){
     recupUe.open("fichierUe.txt");
     if(recupUe){
         std::string ligne;
-        std::cout << "fichier ouvert" << std::endl;
         //récuperer les Ue
         while(getline(recupUe, ligne)){
-            std::cout << "ajout de l'Ue " << ligne << std::endl; 
             ue.push_back(Ue(ligne));
         }
         recupUe.close();
@@ -99,22 +97,21 @@ void saveData(std::vector<Ue> ue, std::vector<Matiere> matiere){
     }
 }
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-=======
-/*std::string verifNom(std::string nom){
-    std::replace(nom.begin(), nom.end(), ' ', '_');
-    std::cout << "nom finale: " << nom << std::endl;
-    return nom;
-}*/
-
->>>>>>> main
-double moyenneUe(std::vector<Matiere> &matiere, Ue &ue){
+double moyenneUe(std::vector<Matiere> &matiere, Ue &ue, std::vector<Ue> &ueTest){
     double num = 0;
     double denom = 0;
+    //probleme dans cette fonction: perte de réference quand il y a plusieurs Ue
+    /*std::cout << "moyenne de: " << ue.getNom() << std::endl;
+    std::cout << "nb Matiere dans fonction: " << matiere.size() << std::endl;
+
+    for(int i = 0; i < ueTest.size(); i++){
+        std::cout << "Ue " << i << ": " << ueTest[i].getNom() << std::endl;
+    } */
 
     for(int i = 0; i < matiere.size(); i++){
+        /*std::cout << "Boucle: " << matiere[i].getNom() << " " << ue.getNom() << std::endl;
+        std::cout << matiere[i].getUe() << std::endl;
+        std::cout << "1" << std::endl;*/
         if(matiere[i].getUe() == ue.getNom()){
             num += (matiere[i].getMoyenne() * matiere[i].getCoef());
             denom += matiere[i].getCoef();
@@ -123,10 +120,7 @@ double moyenneUe(std::vector<Matiere> &matiere, Ue &ue){
     return num/denom;
 }
 
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> main
+
 int main()
 {
 
@@ -159,23 +153,25 @@ int main()
             continue;
         }
         std::string nom;
-        
+        /*
         while(std::cin.fail()){
             std::cin.clear();
             std::cin.ignore(1000, '\n');
             std::cout << "Input invalid" << std::endl;
             std::cin >> action;
-        }
+        }*/
 
         switch(action){
             //Afficher les Ue
             case 1:
                 //Afficher tout les Ue
                 for(int i = 0; i < ue.size() ; i++){
-                    std::cout << "Ue: " << ue[i].getNom() << " Moyenne: " << moyenneUe(matiere, ue[i]) << std::endl;
+                    /*std::cout << "Nb matiere: " << matiere.size() << std::endl;
+                    std::cout << "affichage Ue" << std::endl;*/
+                    std::cout << "Ue: " << ue[i].getNom() << std::endl;
+                    std::cout << " Moyenne: " << moyenneUe(matiere, ue[i], ue) << std::endl;
                     for(int j = 0; j < matiere.size(); j++){
                         //afficher les matière de l'Ue
-                        std::cout << "afficher matieres" << std::endl;
                         if(matiere[j].getUe() == ue[i].getNom()){ 
                             std::cout << " " << matiere[j].getNom() << " Coef: " << matiere[j].getCoef() << " Moyenne: " << matiere[j].calculMoyenne() << std::endl;
                             //afficher les notes de cet Ue
@@ -189,7 +185,9 @@ int main()
             case 2:
                 std::cout << "Saisissez un nom: ";
                 std::getline(std::cin >> std::ws, nom);
+                std::cout << matiere[0].getUe() << std::endl;
                 ue.push_back(Ue(nom));
+
                 break;
             //modifier un Ue
             case 3:

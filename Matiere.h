@@ -10,7 +10,7 @@ class Matiere: public Ue
     
     double coef;
     std::vector<Note> note;
-    Ue &lien;
+    Ue lien;
 
     public:
     Matiere(std::string nom, double coef, Ue &lien): Ue(nom), coef(coef), lien(lien){}
