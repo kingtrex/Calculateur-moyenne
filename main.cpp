@@ -1,7 +1,7 @@
 #include "header.h"
 #include "Ue.h"
 #include "Matiere.h"
-
+//récupérer les Ue de la dernière execution
 std::vector<Ue> recupUe(){
     std::vector<Ue> ue;
     std::ifstream recupUe;
@@ -17,7 +17,7 @@ std::vector<Ue> recupUe(){
     }
     
 }
-
+//récupérer les matières de la dernère execution
 std::vector<Matiere> recupMatiere(std::vector<Ue> &ue){
 
     std::ifstream recupMatiere;
@@ -51,7 +51,7 @@ std::vector<Matiere> recupMatiere(std::vector<Ue> &ue){
         return matiere;
     }
 }
-
+//récupérer les notes de la dernière execution
 void recupNote(std::vector<Matiere> &matiere){
     std::ifstream file;
     file.open("fichierNote.txt");
@@ -145,14 +145,10 @@ void veriSaisie(auto &var, int min = -2, int max = -2){
 
 }
 
-int main()
-{
+int main(){
 
-    //récupérer les Ue de la dernière execution
     std::vector<Ue> ue = recupUe();
-    //récupérer les matières de la dernère execution
     std::vector<Matiere> matiere = recupMatiere(ue);
-    //récupérer les notes de la dernière execution
     recupNote(matiere);
     //calculer la moyenne des matières
     for(int i = 0; i < matiere.size(); i++){
@@ -298,7 +294,7 @@ int main()
                         veriSaisie(coef);
 
                         matiere[mapMatiere[choixMatiere]].setCoef(coef);
-                        
+
                     default:
                         std::cout << "Fonction inexistante " << std::endl;
                         break;
