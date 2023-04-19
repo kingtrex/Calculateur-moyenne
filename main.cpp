@@ -111,6 +111,39 @@ double moyenneUe(std::vector<Matiere> &matiere, Ue &ue, std::vector<Ue> &ueTest)
     return num/denom;
 }
 
+void afficherMatiere(std::vector<Ue> &ue, std::vector<Matiere> &matiere, std::unordered_map<int, int> &mapMatiere, int action2){
+    for(int i = 0, j = 0; i < matiere.size(); i++){
+        if(matiere[i].getUe() == ue[action2].getNom()){
+            mapMatiere.emplace(j, i);
+            std::cout << j << ": " << matiere[i].getNom() << std::endl;
+            j++;
+        }
+    }
+}
+/*verifier les saisie: 
+    var: la variable a tester, continue si
+    min: si var >= min
+    max: si var < max
+    Nota, si min et max non données, verifie juste si la saisie est un entier
+*/
+void veriSaisie(auto &var, int min = -2, int max = -2){
+    if(min == -2 && max == -2){
+        while(std::cin.fail()){
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
+            std::cout << "Input invalid" << std::endl;
+            std::cin >> var;
+        }    
+    }else{
+        while(std::cin.fail() || (var < min || var >= max)){
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
+            std::cout << "Input invalid" << std::endl;
+            std::cin >> var;
+        }
+    }
+
+}
 
 int main()
 {
@@ -138,6 +171,7 @@ int main()
         std::cout << "0: sauvegarder et quitter" << std::endl;
 
         std::cin >> action;
+        veriSaisie(action, 0, 4);
         //action = 1;
         if(action == 1 | action == 3 && ue.size() == 0){
             std::cout << "Aucun UE enregistre." << std::endl;
@@ -183,58 +217,90 @@ int main()
                 std::cin >> action2;
 
                 //gestion des erreurs
-                while(std::cin.fail() || (action2 < -1 || action2 >= ue.size())){
-                    std::cin.clear();
-                    std::cin.ignore(1000, '\n');
-                    std::cout << "Input invalid" << std::endl;
-                    std::cin >> action2;
-                }
-
+                veriSaisie(action2, -1, ue.size());
+                if(action2 == -1) break;
 
                 int action3;
-                do{
-                    std::cout << "Que voulez-vous faire?" << std::endl;
-                    std::cout << "0: retour" << std::endl;
-                    std::cout << "1: ajouter une matiere" << std::endl;
-                    std::cout << "2: ajouter une note" << std::endl;
-                }while(!(std::cin >> action3));
-                
-                std::string nomMatiere;
 
+                std::cout << "Que voulez-vous faire?" << std::endl;
+                std::cout << "0: retour" << std::endl;
+                std::cout << "1: ajouter une matiere" << std::endl;
+                std::cout << "2: ajouter une note" << std::endl;
+                std::cout << "3: changer le nom" << std::endl;
+                std::cout << "4: changer le coef" << std::endl;
+
+                std::cin >> action3;
+                veriSaisie(action3, 0, 5);
+
+                std::string nom;
+                std::unordered_map<int, int> mapMatiere;
+                double coef;
                 switch(action3){
                     
                     //ajouter une matière
                     case 1:
                         std::cout << "Comment voulez-vous appeler cette matiere?" << std::endl;
                         //consider les espaces comme inclus dans la saisie
-                        std::getline(std::cin >> std::ws, nomMatiere);
+                        std::getline(std::cin >> std::ws, nom);
+
                         std::cout << "Quel sera son coef?" << std::endl;
-                        double coef;
-
                         std::cin >> coef;
+                        veriSaisie(coef);
 
-                        matiere.push_back(Matiere(nomMatiere, coef, ue[action2]));
+                        matiere.push_back(Matiere(nom, coef, ue[action2]));
                         std::cout << "retour au menu principal" << std::endl;
                         break;
+
                     case 2:
                         std::cout << "Ajouter une note a quel matiere?" << std::endl;
-                        for(int i = 0; i < matiere.size(); i++){
-                            std::cout << i << " Ue: " + matiere[i].getUe() << " Matiere: " << matiere[i].getNom() << std::endl;
-                        }
+                        
+                        afficherMatiere(ue, matiere, mapMatiere, action2);
+
                         int choixMatiere;
                         std::cin >> choixMatiere;
-                        if(!(choixMatiere < 0 || choixMatiere >= matiere.size())){
+                        veriSaisie(choixMatiere);
+
+                        if(!(choixMatiere < 0 || choixMatiere >= mapMatiere.size())){
                             std::string libelle;
                             std::cout << "Quel sera le libelle de la note?" << std::endl;
                             std::getline(std::cin >> std::ws, libelle);
                             double note, pourcentage;
                             std::cout << "Quel note?" << std::endl;
                             std::cin >> note;
+
+                            veriSaisie(note);
+
                             std::cout << "Quel pourcentage de la note finale?" << std::endl;
                             std::cin >> pourcentage;
 
-                            matiere[choixMatiere].addNote(note, pourcentage, libelle);
+                            veriSaisie(pourcentage);
+
+                            matiere[mapMatiere[choixMatiere]].addNote(note, pourcentage, libelle);
                         }else std::cout << "Erreur: matiere introuvable, retour au menu principal" <<std::endl;
+                        break;
+
+                    case 3:
+                        std::cout << "Saisissez le nouveau nom: ";
+                        std::cin >> nom;
+                        ue[action2].setNom(nom);
+                        break;
+                    
+                    case 4:
+                        std::cout << "Quelle matiere voulez-vous modifier:" << std::endl;
+
+                        afficherMatiere(ue, matiere, mapMatiere, action2);
+                        
+                        std::cin >> choixMatiere;
+                        veriSaisie(choixMatiere, 0, mapMatiere.size());
+
+                        std::cout << "Saissez le nouveau coef: ";
+                        std::cin >> coef;
+                        veriSaisie(coef);
+
+                        matiere[mapMatiere[choixMatiere]].setCoef(coef);
+                        
+                    default:
+                        std::cout << "Fonction inexistante " << std::endl;
                         break;
                 }
 
