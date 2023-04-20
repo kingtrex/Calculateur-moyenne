@@ -14,12 +14,13 @@ class Note: public Ue{
     //get/set
     double getNote(){return this->note;}
     int getPourcentage(){return this->pourcentage;}
-
+    
     void setNote(double note){this->note = note;}
     void setPourcentage(int pourcentage){this->pourcentage = pourcentage;}
 
     //methode diverse
     std::string getData();
+    void modifNote();
 
 };
 

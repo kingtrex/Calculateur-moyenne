@@ -91,3 +91,62 @@ double Matiere::calculMoyenne(std::vector<Matiere> matiere, std::string nom){
     this->setMoyenne(num/coef);
     return this->getMoyenne();
 }
+/*afficher les notes
+action = 0: afficher les notes sans les indices
+action = 1: afficher les notes avec les indices
+*/
+void Matiere::afficheNote(int action = 0){
+    switch(action){
+        case 0:
+            for(int i = 0; i < note.size(); i++){
+                std::cout << note[i].getData() << std::endl;
+            }
+            break;
+        case 1:
+            for(int i = 0; i < note.size(); i++){
+                std::cout << i << ": " << note[i].getData() << std::endl;
+            }
+            break;
+    }
+    
+}
+
+void Matiere::modifMatiere(int action){
+    std::string libelle, nom;
+    switch(action){
+        case 2:
+            std::cout << "Quel sera le libelle de la note?" << std::endl;
+            std::getline(std::cin >> std::ws, libelle);
+            double note, pourcentage;
+            std::cout << "Quel note?" << std::endl;
+            std::cin >> note;
+
+            this->verifSaisie(note, 0, 21);
+
+            std::cout << "Quel pourcentage de la note finale?" << std::endl;
+            std::cin >> pourcentage;
+
+            this->verifSaisie(pourcentage, 0, 101);
+            this->addNote(note, pourcentage, libelle);
+            break;
+        case 3:
+            std::cout << "Saisissez le nouveau nom: ";
+            std::cin >> nom;
+            this->setNom(nom);
+            break;
+        case 4:
+            std::cout << "Saissez le nouveau coef: ";
+            std::cin >> coef;
+            this->verifSaisie(coef, 0, 101);
+
+            this->setCoef(coef);
+            break;
+        case 5:
+            std::cout << "Quelle note voulez-vous modifier?" << std::endl;
+            this->afficheNote(1);
+            int choix;
+            std::cin >> choix;
+            this->verifSaisie(choix, 0, this->getNbNote());
+            this->note[choix].modifNote();
+    }
+}

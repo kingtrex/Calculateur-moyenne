@@ -16,11 +16,13 @@ class Ue{
     double getMoyenne(){return this->moyenne;}
 
     //setteur
-    void setNom(std::string nom){this->nom = nom;}
+    void setNom(std::string nom);
     void setMoyenne(double moyenne){this->moyenne = moyenne;}
 
     //méthode matière
     void verifNom();
+    void verifSaisie(double &var, int min, int max);
+    void verifSaisie(int &var, int min, int max);
 
 };
 #endif

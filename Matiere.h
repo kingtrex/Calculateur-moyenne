@@ -23,10 +23,15 @@ class Matiere: public Ue
     void getNote();
     std::string getUe(){return this->lien.getNom();}
     int getTotalPourcentage();
+    int getNbNote(){return this->note.size();}
+
     void saveNote(std::ofstream &file);
     void verifPourcentage();
     void reparNote();
+    void afficheNote(int action);
+    void modifMatiere(int action);
     double calculMoyenne();
     double calculMoyenne(std::vector<Matiere> matiere, std::string nom);
+
 };
 #endif
