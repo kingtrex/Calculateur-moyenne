@@ -20,7 +20,7 @@ void Matiere::saveNote(std::ofstream &file){
     }
 }
 
-void Matiere::addNote(double note, double pourcentage, std::string label){
+void Matiere::addNote(double note, double pourcentage, const std::string &label){
     this->note.push_back(Note(note, pourcentage, label));
     verifPourcentage();
 }

@@ -13,17 +13,17 @@ class Matiere: public Ue
     Ue lien;
 
     public:
-    Matiere(std::string nom, double coef, Ue &lien): Ue(nom), coef(coef), lien(lien){}
+    Matiere(const std::string &nom, double coef, Ue &lien): Ue(nom), coef(coef), lien(lien){}
     ~Matiere(){};
 
     void setCoef(double coef);
-    void addNote(double note, double pourcentage, std::string label);
+    void addNote(double note, double pourcentage, const std::string &label);
 
-    double getCoef(){return this->coef;}
+    double getCoef()const {return this->coef;}
     void getNote();
-    std::string getUe(){return this->lien.getNom();}
+    std::string getUe()const {return this->lien.getNom();}
     int getTotalPourcentage();
-    int getNbNote(){return this->note.size();}
+    int getNbNote()const {return this->note.size();}
 
     void saveNote(std::ofstream &file);
     void verifPourcentage();

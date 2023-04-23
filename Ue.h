@@ -12,8 +12,8 @@ class Ue{
     ~Ue(){};
     
     //geteur
-    std::string getNom(){return this->nom;}    
-    double getMoyenne(){return this->moyenne;}
+    std::string getNom()const {return this->nom;}    
+    double getMoyenne()const {return this->moyenne;}
 
     //setteur
     void setNom(std::string nom);
