@@ -49,16 +49,18 @@ int main(){
                             std::cout << " " << matiere[j].getNom() << " Coef: " << matiere[j].getCoef() << " Moyenne: " << matiere[j].calculMoyenne() << std::endl;
                             //afficher les notes de cet Ue
                             matiere[j].getNote();
+                            if(moyenneUe(matiere, ue[i], ue) < 10 && matiere[j].getMoyenne() < 10){
+                                matiere[j].verifMoyenne();
+                            }
                         }
-
                     }
+                    
                 }
                 break;
             //enregistrer un nouvel Ue
             case 2:
                 std::cout << "Saisissez un nom: ";
                 std::getline(std::cin >> std::ws, nom);
-                std::cout << matiere[0].getUe() << std::endl;
                 ue.push_back(Ue(nom));
 
                 break;
@@ -116,6 +118,7 @@ int main(){
                         std::cin >> choixMatiere;
                         verifSaisie(choixMatiere, 0, mapMatiere.size());
                         matiere[mapMatiere[choixMatiere]].modifMatiere(action3);
+                        break;
                     default:
                         std::cout << "Fonction inexistante " << std::endl;
                         break;

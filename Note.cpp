@@ -35,9 +35,10 @@ void Note::modifNote(){
             int pourcentage;
             std::cout << "Saisissez le nouveau pourcentage" << std::endl;
             std::cin >> pourcentage;
-            this->verifSaisie(pourcentage, 0, 21);
+            this->verifSaisie(pourcentage, 0, 101);
             this->setPourcentage(pourcentage);
             std::cout << "Pourcentage modifier avec succes" << std::endl;
+            break;
     }
 }
 

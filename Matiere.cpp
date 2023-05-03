@@ -48,21 +48,13 @@ void Matiere::reparNote(){
         getNote();
         int choix;
         std::cin >> choix;
-        while(std::cin.fail() || choix < 0 || choix >= note.size()){
-            std::cout << "Input invalid" << std::endl;
-            std::cin.clear();
-            std::cin.ignore(1000, '\n');
-            std::cin >> choix;
-        }
+        verifSaisie(choix, 0, 21);
+
         std::cout << "Remplacer par quel pourcentage?" << std::endl;
         int choix2;
         std::cin >> choix2;
-        while(std::cin.fail() || choix2 <= 0 || choix2 > 100){
-            std::cout << "Input invalid" << std::endl;
-            std::cin.clear();
-            std::cin.ignore(1000, '\n');
-            std::cin >> choix2;
-        }
+        verifSaisie(choix2, 0, 101);
+
         note[choix].setPourcentage(choix2);
     }while(getTotalPourcentage() > 100);
 }
@@ -149,4 +141,42 @@ void Matiere::modifMatiere(int action){
             this->verifSaisie(choix, 0, this->getNbNote());
             this->note[choix].modifNote();
     }
+}
+
+void Matiere::verifMoyenne(){
+    if(this->getMoyenne() >= 10){
+        std::cout << "Aucun rattrapage en théorie en " << this->getNom() <<std::endl;
+    }else if(this->getTotalPourcentage() == 100 || this->noteIdeale()){
+        std::cout << "Rattrapage probable en " << this->getNom() << std::endl;
+    }
+}
+
+int Matiere::noteIdeale(){
+    std::vector<Note> noteTest;
+    //recuperer les notes existantes
+    for(int i = 0; i < this->note.size(); i++){
+        noteTest.push_back(Note(note[i].getNote(), note[i].getPourcentage(), note[i].getNom()));
+    }    
+    int pourcentageTest = 100 - this->getTotalPourcentage();
+    noteTest.push_back(Note(10, pourcentageTest));
+    if(this->calculMoyenne(noteTest) >= 10){
+        std::cout << "il faudrait au moins 10 pour avoir une chance d'éviter le rattrapage" << std::endl;
+        return 0;
+    }
+    for(double i = 10; i <= 20; i+=0.1){
+        noteTest.back().setNote(i);
+        if(this->calculMoyenne(noteTest) >= 10){
+            std::cout << "il faudrait au moins " << i << " pour avoir une chance d'éviter le rattrapage" << std::endl;
+            return 0;
+        }
+    }
+    return 1;
+}
+
+double Matiere::calculMoyenne(std::vector <Note> note){
+    double moyenne = 0;
+    for(int i = 0; i < note.size(); i++){
+        moyenne+=(note[i].getNote()*note[i].getPourcentage());
+    }
+    return moyenne;
 }

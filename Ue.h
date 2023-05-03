@@ -8,6 +8,7 @@ class Ue{
     
     public:
     //constructeur,destructeur
+    Ue(): nom("test"){}
     Ue(std::string nom): nom(nom){verifNom();}
     ~Ue(){};
     
@@ -21,6 +22,11 @@ class Ue{
 
     //méthode matière
     void verifNom();
+    /*
+    verifier que la saisie est correcte, si min et max définis:
+    min: saisie >= min
+    max: saisie < max
+    */
     void verifSaisie(double &var, int min, int max);
     void verifSaisie(int &var, int min, int max);
 

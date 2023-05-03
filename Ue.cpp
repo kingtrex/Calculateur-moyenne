@@ -41,7 +41,7 @@ void Ue::verifSaisie(int &var, int min, int max){
         while(std::cin.fail() || (var < min || var >= max)){
             std::cin.clear();
             std::cin.ignore(1000, '\n');
-            std::cout << "Input invalid" << std::endl;
+            std::cout << "Input invalid: min=" << min << " max= " << max  << std::endl;
             std::cin >> var;
         }
     }

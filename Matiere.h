@@ -27,11 +27,15 @@ class Matiere: public Ue
 
     void saveNote(std::ofstream &file);
     void verifPourcentage();
+    void verifMoyenne();
     void reparNote();
     void afficheNote(int action);
     void modifMatiere(int action);
+    int noteIdeale();
     double calculMoyenne();
     double calculMoyenne(std::vector<Matiere> matiere, std::string nom);
+    double calculMoyenne(std::vector<Note> note);
+
 
 };
 #endif

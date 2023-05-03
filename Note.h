@@ -8,6 +8,7 @@ class Note: public Ue{
     int pourcentage;
     public:
     //constructeur/destructeur
+    Note(double note, double pourcentage): note(note), pourcentage(pourcentage){}
     Note(double note, double pourcentage, std::string label): Ue(label), note(note), pourcentage(pourcentage){}
     ~Note(){}
     
