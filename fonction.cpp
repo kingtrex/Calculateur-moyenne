@@ -123,7 +123,6 @@ void afficherMatiere(std::vector<Ue> &ue, std::vector<Matiere> &matiere, std::un
     max: si var < max
     Nota, si min et max non données, verifie juste si la saisie est un entier
 */
-
 void verifSaisie(int &var, int min, int max){
     if(min == -2 && max == -2){
         while(std::cin.fail()){

@@ -12,6 +12,7 @@ class Matiere: public Ue
     std::vector<Note> note;
     Ue lien;
 
+
     public:
     Matiere(const std::string &nom, double coef, Ue &lien): Ue(nom), coef(coef), lien(lien){}
     ~Matiere(){};
@@ -32,7 +33,7 @@ class Matiere: public Ue
     void afficheNote(int action);
     void modifMatiere(int action);
     int noteIdeale();
-    double calculMoyenne();
+    void calculMoyenne();
     double calculMoyenne(std::vector<Matiere> matiere, std::string nom);
     double calculMoyenne(std::vector<Note> note);
 

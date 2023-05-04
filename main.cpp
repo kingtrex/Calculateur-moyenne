@@ -2,6 +2,7 @@
 #include "Ue.h"
 #include "Matiere.h"
 #include "fonction.h"
+
 const int RETOUR = -1;
 //récupérer les Ue de la dernière execution
 
@@ -46,7 +47,7 @@ int main(){
                     for(int j = 0; j < matiere.size(); j++){
                         //afficher les matière de l'Ue
                         if(matiere[j].getUe() == ue[i].getNom()){ 
-                            std::cout << " " << matiere[j].getNom() << " Coef: " << matiere[j].getCoef() << " Moyenne: " << matiere[j].calculMoyenne() << std::endl;
+                            std::cout << " " << matiere[j].getNom() << " Coef: " << matiere[j].getCoef() << " Moyenne: " << matiere[j].getMoyenne() << std::endl;
                             //afficher les notes de cet Ue
                             matiere[j].getNote();
                             if(moyenneUe(matiere, ue[i], ue) < 10 && matiere[j].getMoyenne() < 10){
@@ -88,8 +89,9 @@ int main(){
                 std::cout << "3: changer le nom d'une matiere" << std::endl;
                 std::cout << "4: changer le coef d'une matiere" << std::endl;
                 std::cout << "5: changer une note" << std::endl;
+                std::cout << "6: supprimer une note" << std::endl;
                 std::cin >> action3;
-                verifSaisie(action3, 0, 6);
+                verifSaisie(action3, 0, 7);
 
                 std::string nom;
                 std::unordered_map<int, int> mapMatiere;
@@ -112,7 +114,7 @@ int main(){
                         break;
 
                     
-                    case 2: case 3: case 4: case 5:
+                    case 2: case 3: case 4: case 5: case 6:
                         std::cout << "Quel matiere voulez-vous modifier?" << std::endl;
                         afficherMatiere(ue, matiere, mapMatiere, action2);
                         std::cin >> choixMatiere;

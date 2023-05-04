@@ -59,7 +59,7 @@ void Matiere::reparNote(){
     }while(getTotalPourcentage() > 100);
 }
 //calculer la moyenne de la matère
-double Matiere::calculMoyenne(){
+void Matiere::calculMoyenne(){
     
     double totalNote = 0;
 
@@ -67,7 +67,6 @@ double Matiere::calculMoyenne(){
         totalNote += note[i].getNote() * note[i].getPourcentage();
     }
     this->setMoyenne((double)totalNote/100);
-    return this->getMoyenne();
 }
 //calculer la moyenne de l'Ue
 double Matiere::calculMoyenne(std::vector<Matiere> matiere, std::string nom){
@@ -76,7 +75,7 @@ double Matiere::calculMoyenne(std::vector<Matiere> matiere, std::string nom){
 
     for(int i = 0; i < matiere.size(); i++){
         if(matiere[i].getNom() == nom){
-            num += calculMoyenne() * this->coef;
+            num += matiere[i].getMoyenne() * this->coef;
             denom += coef;
         }
     }
@@ -140,7 +139,16 @@ void Matiere::modifMatiere(int action){
             std::cin >> choix;
             this->verifSaisie(choix, 0, this->getNbNote());
             this->note[choix].modifNote();
-    }
+            break;
+        case 6:
+            std::cout << "Supprimer quelle note?" << std::endl;
+            this->afficheNote(1);
+            std::cin >> choix;
+            this->verifSaisie(choix, 0, this->getNbNote());
+            this->note.erase(this->note.begin()+choix);
+            break;
+        }
+    this->calculMoyenne();
 }
 
 void Matiere::verifMoyenne(){
