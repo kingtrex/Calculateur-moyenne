@@ -100,7 +100,7 @@ double moyenneUe(std::vector<Matiere> &matiere, Ue &ue, std::vector<Ue> &ueTest)
 
     for(int i = 0; i < matiere.size(); i++){
 
-        if(matiere[i].getUe() == ue.getNom()){
+        if(matiere[i].getUe() == ue.getNom() && matiere[i].getNbNote() != 0){
             num += (matiere[i].getMoyenne() * matiere[i].getCoef());
             denom += matiere[i].getCoef();
         }
