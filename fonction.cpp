@@ -1,6 +1,5 @@
 #include "fonction.h"
-std::vector<Ue> recupUe(){
-    std::vector<Ue> ue;
+int recupUe(std::vector <Ue> &ue){
     std::ifstream recupUe;
     recupUe.open("fichierUe.txt");
     if(recupUe){
@@ -10,12 +9,13 @@ std::vector<Ue> recupUe(){
             ue.push_back(Ue(ligne));
         }
         recupUe.close();
-        return ue;
+        return 0;
     }
+    return 1;
     
 }
 //récupérer les matières de la dernère execution
-std::vector<Matiere> recupMatiere(std::vector<Ue> &ue){
+int recupMatiere(std::vector<Ue> &ue, std::vector<Matiere> &matiere){
 
     std::ifstream recupMatiere;
     recupMatiere.open("fichierMatiere.txt");
@@ -45,29 +45,34 @@ std::vector<Matiere> recupMatiere(std::vector<Ue> &ue){
             data.clear();
         }
         recupMatiere.close();
-        return matiere;
+        return 0;
     }
+    return 1;
 }
 //récupérer les notes de la dernière execution
-void recupNote(std::vector<Matiere> &matiere){
+int recupNote(std::vector<Matiere> &matiere){
     std::ifstream file;
     file.open("fichierNote.txt");
-    std::string ligne;
-    std::string separateur = " ";
-    std::vector<std::string> data;
-    size_t pos = 0;
-    while(getline(file, ligne)){
-        //récuperer les données de chaque ligne
-        while((pos = ligne.find(separateur)) != std::string::npos){
-            data.push_back(ligne.substr(0, pos));
-            ligne.erase(0, pos + separateur.size());
+    if(file){
+        std::string ligne;
+        std::string separateur = " ";
+        std::vector<std::string> data;
+        size_t pos = 0;
+        while(getline(file, ligne)){
+            //récuperer les données de chaque ligne
+            while((pos = ligne.find(separateur)) != std::string::npos){
+                data.push_back(ligne.substr(0, pos));
+                ligne.erase(0, pos + separateur.size());
+            }
+            data.push_back(ligne);
+            for(int i = 0; i < matiere.size(); i++){
+                if(data[0] == matiere[i].getNom()) matiere[i].addNote(std::stod(data[2]), std::stod(data[3]), data[1]);
+            }
+            data.clear();
         }
-        data.push_back(ligne);
-        for(int i = 0; i < matiere.size(); i++){
-            if(data[0] == matiere[i].getNom()) matiere[i].addNote(std::stod(data[2]), std::stod(data[3]), data[1]);
-        }
-        data.clear();
+        return 0;
     }
+    return 1;
 }
 
 void saveData(std::vector<Ue> ue, std::vector<Matiere> matiere){

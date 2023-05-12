@@ -9,13 +9,23 @@ const int RETOUR = -1;
 
 int main(){
 
-    std::vector<Ue> ue = recupUe();
-    std::vector<Matiere> matiere = recupMatiere(ue);
-    recupNote(matiere);
-    //calculer la moyenne des matières
-    for(int i = 0; i < matiere.size(); i++){
-        matiere[i].calculMoyenne();
+    std::vector<Ue> ue;
+    if(recupUe(ue)){
+        std::cout << "Impossible de lire les Ue" << std::endl; 
+        return 1;
     }
+    std::vector<Matiere> matiere;
+    if(recupMatiere(ue, matiere)){
+        std::cout << "Impossible de lire les matière" << std::endl;
+        return 1;
+    }
+
+    if(recupNote(matiere)){
+        std::cout << "Impossible de lire les notes" << std::endl;
+        return 1;
+    }
+    //calculer la moyenne des matières
+    for(int i = 0; i < matiere.size(); i++) matiere[i].calculMoyenne();
     
     int action;
     std::string nom;
@@ -29,9 +39,9 @@ int main(){
         std::cout << "0: sauvegarder et quitter" << std::endl;
 
         std::cin >> action;
+        //changer le 3ème paramètres si on ajoute des fonctionnalités
         verifSaisie(action, 0, 4);
-        //action = 1;
-        if(action == 1 | action == 3 && ue.size() == 0){
+        if((action == 1 || action == 3) && ue.size() == 0){
             std::cout << "Aucun UE enregistre." << std::endl;
             continue;
         }
@@ -91,6 +101,7 @@ int main(){
                 std::cout << "5: changer une note" << std::endl;
                 std::cout << "6: supprimer une note" << std::endl;
                 std::cin >> action3;
+                //changer le 3ème paramètres si on ajoute des fonctionnalités
                 verifSaisie(action3, 0, 7);
 
                 std::string nom;

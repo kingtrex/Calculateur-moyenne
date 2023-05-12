@@ -4,9 +4,9 @@
 #include "Ue.h"
 #include "Note.h"
 #include "Matiere.h"
-std::vector<Ue> recupUe();
-std::vector<Matiere> recupMatiere(std::vector<Ue> &ue);
-void recupNote(std::vector<Matiere> &matiere);
+int recupUe(std::vector<Ue> &ue);
+int recupMatiere(std::vector<Ue> &ue, std::vector<Matiere> &matiere);
+int recupNote(std::vector<Matiere> &matiere);
 void saveData(std::vector<Ue> ue, std::vector<Matiere> matiere);
 double moyenneUe(std::vector<Matiere> &matiere, Ue &ue, std::vector<Ue> &ueTest);
 void afficherMatiere(std::vector<Ue> &ue, std::vector<Matiere> &matiere, std::unordered_map<int, int> &mapMatiere, int action2);
