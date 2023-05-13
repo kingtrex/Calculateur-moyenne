@@ -9,8 +9,9 @@ Ce projet devait, initialement, utiliser un framework graphique mais le temps co
 #Pré-requis:
 
 Pour commencer à développer, Il faut:
-Un compilateur c++ (MinGW par exemple)
-Cmake
+
+-Un compilateur c++ (MinGW par exemple)
+-Cmake
 
 #commencer à coder:
 

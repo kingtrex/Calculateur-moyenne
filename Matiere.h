@@ -15,6 +15,7 @@ class Matiere: public Ue
 
     public:
     Matiere(const std::string &nom, double coef, Ue &lien): Ue(nom), coef(coef), lien(lien){}
+    Matiere(const std::string &nom, double coef): Ue(nom), coef(coef){}
     ~Matiere(){};
 
     void setCoef(double coef);

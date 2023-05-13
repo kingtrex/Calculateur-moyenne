@@ -9,6 +9,8 @@ int recupUe(std::vector <Ue> &ue){
             ue.push_back(Ue(ligne));
         }
         recupUe.close();
+        std::cout << "Ue dans fonction: " << ue.size() << std::endl;
+
         return 0;
     }
     return 1;
@@ -21,13 +23,13 @@ int recupMatiere(std::vector<Ue> &ue, std::vector<Matiere> &matiere){
     recupMatiere.open("fichierMatiere.txt");
     if(recupMatiere){
         
-        std::vector<Matiere> matiere;
         std::vector<std::string> data;
         std::string separateur = " ";
         std::string ligne;
         size_t pos = 0;
         //récupérer les matières
         while(getline(recupMatiere, ligne)){
+            std::cout << ligne << std::endl;
             //obtenir les différentes données de la ligne
             while((pos = ligne.find(separateur)) != std::string::npos){
                 data.push_back(ligne.substr(0, pos));
@@ -41,10 +43,15 @@ int recupMatiere(std::vector<Ue> &ue, std::vector<Matiere> &matiere){
                     break;
                 }
             }
+            std::cout << data[1] << " " << data[2] << " " << ue[indice].getNom() << std::endl;
+            std::cout << "adresse:" << &ue[indice] << std::endl;
             matiere.push_back(Matiere(data[1], std::stod(data[2]), ue[indice]));
+
             data.clear();
         }
+        std::cout << "matiere dans fonction: " << matiere.size() << std::endl;
         recupMatiere.close();
+        std::cout << "matiere dans fonction: " << matiere.size() << std::endl;
         return 0;
     }
     return 1;

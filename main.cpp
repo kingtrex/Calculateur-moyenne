@@ -14,12 +14,14 @@ int main(){
         std::cout << "Impossible de lire les Ue" << std::endl; 
         return 1;
     }
+    std::cout << "taille matiere: " << ue.size() << std::endl;
+    for(int i = 0; i < ue.size(); i++) std::cout << &ue[i] << std::endl;
     std::vector<Matiere> matiere;
     if(recupMatiere(ue, matiere)){
         std::cout << "Impossible de lire les matière" << std::endl;
         return 1;
     }
-
+    std::cout << "taille matiere: " << matiere.size() << std::endl;
     if(recupNote(matiere)){
         std::cout << "Impossible de lire les notes" << std::endl;
         return 1;
@@ -55,6 +57,7 @@ int main(){
                     std::cout << "Ue: " << ue[i].getNom() << std::endl;
                     std::cout << "Moyenne: " << moyenneUe(matiere, ue[i], ue) << std::endl;
                     for(int j = 0; j < matiere.size(); j++){
+                        std::cout << "affichage des matiere" << std::endl;
                         //afficher les matière de l'Ue
                         if(matiere[j].getUe() == ue[i].getNom()){ 
                             std::cout << " " << matiere[j].getNom() << " Coef: " << matiere[j].getCoef() << " Moyenne: " << matiere[j].getMoyenne() << std::endl;
