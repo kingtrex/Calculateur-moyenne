@@ -22,5 +22,5 @@ Pour commencer à développer, Il faut:
 -executer le programme avec ./CalculateurMoyenne.exe (il se peut que le .exe se trouve uniquement dans le repertoire "debug", déplacez les fichierUe/Matiere/Note.txt dans ce même repertoire)
 
 ![Menu principal](https://zupimages.net/up/23/20/lxdb.png)
-![](https://zupimages.net/viewer.php?id=23/20/yuzn.png)
+![](https://zupimages.net/up/23/20/yuzn.png)
 ![](https://zupimages.net/up/23/20/h1uy.png)
