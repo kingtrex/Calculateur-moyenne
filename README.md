@@ -23,4 +23,4 @@ Pour commencer à développer, Il faut:
 
 ![Menu principal](https://zupimages.net/up/23/20/lxdb.png)
 ![](https://zupimages.net/viewer.php?id=23/20/yuzn.png)
-![](https://zupimages.net/viewer.php?id=23/20/h1uy.png)
+![](https://zupimages.net/up/23/20/h1uy.png)
