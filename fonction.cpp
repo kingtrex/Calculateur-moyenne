@@ -9,7 +9,6 @@ int recupUe(std::vector <Ue> &ue){
             ue.push_back(Ue(ligne));
         }
         recupUe.close();
-        std::cout << "Ue dans fonction: " << ue.size() << std::endl;
 
         return 0;
     }
@@ -29,7 +28,6 @@ int recupMatiere(std::vector<Ue> &ue, std::vector<Matiere> &matiere){
         size_t pos = 0;
         //récupérer les matières
         while(getline(recupMatiere, ligne)){
-            std::cout << ligne << std::endl;
             //obtenir les différentes données de la ligne
             while((pos = ligne.find(separateur)) != std::string::npos){
                 data.push_back(ligne.substr(0, pos));
@@ -43,15 +41,11 @@ int recupMatiere(std::vector<Ue> &ue, std::vector<Matiere> &matiere){
                     break;
                 }
             }
-            std::cout << data[1] << " " << data[2] << " " << ue[indice].getNom() << std::endl;
-            std::cout << "adresse:" << &ue[indice] << std::endl;
             matiere.push_back(Matiere(data[1], std::stod(data[2]), ue[indice]));
 
             data.clear();
         }
-        std::cout << "matiere dans fonction: " << matiere.size() << std::endl;
         recupMatiere.close();
-        std::cout << "matiere dans fonction: " << matiere.size() << std::endl;
         return 0;
     }
     return 1;
@@ -169,6 +163,69 @@ void verifSaisie(double &var, int min, int max){
             std::cout << "Input invalid" << std::endl;
             std::cin >> var;
         }
+    }
+
+}
+
+void modifUe(std::vector<Ue> &ue, std::vector<Matiere> &matiere){
+    int action2;
+    std::cout << "Quel Ue voulez vous modifier?" << std::endl;
+    std::cout << "-1: retour" << std::endl;
+                //Afficher les Ue
+    for(int i = 0; i < ue.size(); i++){
+            std::cout << i << ": " + ue[i].getNom() << std::endl;
+    }
+    std::cin >> action2;
+
+                //gestion des erreurs
+    verifSaisie(action2, -1, ue.size());
+    if(action2 == -1) return;
+
+    int action3;
+
+    std::cout << "Que voulez-vous faire?" << std::endl;
+    std::cout << "0: retour" << std::endl;
+    std::cout << "1: ajouter une matiere" << std::endl;
+    std::cout << "2: ajouter une note" << std::endl;
+    std::cout << "3: changer le nom d'une matiere" << std::endl;
+    std::cout << "4: changer le coef d'une matiere" << std::endl;
+    std::cout << "5: changer une note" << std::endl;
+    std::cout << "6: supprimer une note" << std::endl;
+    std::cin >> action3;
+    //changer le 3ème paramètres si on ajoute des fonctionnalités
+    verifSaisie(action3, 0, 7);
+
+    std::string nom;
+    std::unordered_map<int, int> mapMatiere;
+    double coef;
+    int choixMatiere;
+    switch(action3){
+                    
+        //ajouter une matière
+        case 1:
+            std::cout << "Comment voulez-vous appeler cette matiere?" << std::endl;
+                        //consider les espaces comme inclus dans la saisie
+            std::getline(std::cin >> std::ws, nom);
+
+            std::cout << "Quel sera son coef?" << std::endl;
+            std::cin >> coef;
+            verifSaisie(coef);
+
+            matiere.push_back(Matiere(nom, coef, ue[action2]));
+            std::cout << "retour au menu principal" << std::endl;
+            break;
+
+        
+        case 2: case 3: case 4: case 5: case 6:
+            std::cout << "Quel matiere voulez-vous modifier?" << std::endl;
+            afficherMatiere(ue, matiere, mapMatiere, action2);
+            std::cin >> choixMatiere;
+            verifSaisie(choixMatiere, 0, mapMatiere.size());
+            matiere[mapMatiere[choixMatiere]].modifMatiere(action3);
+            break;
+        default:
+            std::cout << "Fonction inexistante " << std::endl;
+            break;
     }
 
 }
