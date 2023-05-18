@@ -13,7 +13,7 @@ Pour commencer à développer, Il faut:
 -Un compilateur c++ (MinGW par exemple)
 -Cmake
 
-## commencer à coder:
+## Commencer à coder:
 
 -Créez tout d'abord un répertoire qui acceuillera tout les fichier présent
 -Dans ce répertoire, créez un sous-répertoire ("build" par exemple)
