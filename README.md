@@ -16,7 +16,7 @@ Pour commencer à développer, Il faut:
 #commencer à coder:
 
 -Créez tout d'abord un répertoire qui acceuillera tout les fichier présent
--Dans ce répertoir, créez un sous répertoire ("build" par exemple)
--Dans un terminal, entrer dans ce repertoire et taper la commande "cmake ../"
--Pour compiler le projet, aller dans le repertoir "build" (ou le nom que vous avez choisi) et entrer la commande "cmake --build ."
--executer le programme avec ./CalculateurMoyenne.exe
+-Dans ce répertoire, créez un sous-répertoire ("build" par exemple)
+-Dans un terminal, entrez dans ce répertoire et taper la commande "cmake ../"
+-Pour compiler le projet, allez dans le répertoire "build" (ou le nom que vous avez choisi) et entrez la commande "cmake --build ."
+-executer le programme avec ./CalculateurMoyenne.exe (il se peut que le .exe se trouve uniquement dans le repertoire "debug", déplacez les fichierUe/Matiere/Note.txt dans ce même repertoire)
