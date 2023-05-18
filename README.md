@@ -1,12 +1,12 @@
 # Calculateur-moyenne
 
-## Introduction
+## Introduction:
 
 Cette application a pour but de calculer la moyenne de l'utilisateur pour chaque Ue. Pour cela, l'utilisateur doit entrer chacun des Ue, des matières et des éventuelles notes manuellement dans le terminal au lancement de l'application en suivant les instructions affichées.
 
 Ce projet devait, initialement, utiliser un framework graphique mais le temps commencait à manquer. J'ai préférer le faire sans interface graphique.
 
-#Pré-requis:
+## Pré-requis:
 
 Pour commencer à développer, Il faut:
 
@@ -21,7 +21,7 @@ Pour commencer à développer, Il faut:
 -Pour compiler le projet, allez dans le répertoire "build" (ou le nom que vous avez choisi) et entrez la commande "cmake --build ."
 -executer le programme avec ./CalculateurMoyenne.exe (il se peut que le .exe se trouve uniquement dans le repertoire "debug", déplacez les fichierUe/Matiere/Note.txt dans ce même repertoire)
 
-## Exemple d'utilisation
+## Exemple d'utilisation:
 ![Menu principal](https://zupimages.net/up/23/20/lxdb.png)
 ![Affichage des Ue](https://zupimages.net/up/23/20/yuzn.png)
 ![Modification des Ue](https://zupimages.net/up/23/20/h1uy.png)
