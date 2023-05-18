@@ -1,3 +1,8 @@
+/****************************************************************************************************
+ *                                    Projet: calculateur de moyenne                                *
+ *                                    Auteur: Thibault TANNÉ                                        *
+ *                                          18/05/2023                                              *
+*****************************************************************************************************/
 #ifndef MATIERE_H
 #define MATIERE_H
 #include "header.h"
@@ -6,13 +11,6 @@
 
 class Matiere: public Ue 
 {
-    private:
-    
-    double coef;
-    std::vector<Note> note;
-    Ue lien;
-
-
     public:
     Matiere(const std::string &nom, double coef, Ue &lien): Ue(nom), coef(coef), lien(lien){}
     Matiere(const std::string &nom, double coef): Ue(nom), coef(coef){}
@@ -37,6 +35,13 @@ class Matiere: public Ue
     void calculMoyenne();
     double calculMoyenne(std::vector<Matiere> matiere, std::string nom);
     double calculMoyenne(std::vector<Note> note);
+    
+    private:
+    double coef;
+    std::vector<Note> note;
+    Ue lien;
+
+    
 
 
 };

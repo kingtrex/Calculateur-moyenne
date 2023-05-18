@@ -1,11 +1,13 @@
+/****************************************************************************************************
+ *                                    Projet: calculateur de moyenne                                *
+ *                                    Auteur: Thibault TANNÉ                                        *
+ *                                          18/05/2023                                              *
+*****************************************************************************************************/
 #ifndef UE_H
 #define UE_H
 #include "header.h"
 class Ue{
-    private:
-    std::string nom;
-    double moyenne;
-    
+
     public:
     //constructeur,destructeur
     Ue(): nom("test"){}
@@ -30,5 +32,9 @@ class Ue{
     void verifSaisie(double &var, int min, int max);
     void verifSaisie(int &var, int min, int max);
 
+    private:
+    std::string nom;
+    double moyenne;
+    
 };
 #endif

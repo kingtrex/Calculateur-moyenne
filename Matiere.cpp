@@ -1,12 +1,13 @@
-
+/****************************************************************************************************
+ *                                    Projet: calculateur de moyenne                                *
+ *                                    Auteur: Thibault TANNÉ                                        *
+ *                                          18/05/2023                                              *
+*****************************************************************************************************/
 #include "Matiere.h"
-
-
 
 void Matiere::setCoef(double coef){
     this->coef = coef;
 }
-
 
 void Matiere::getNote(){
     for(int i = 0; i < this->note.size(); i++){
@@ -24,7 +25,6 @@ void Matiere::addNote(double note, double pourcentage, const std::string &label)
     this->note.push_back(Note(note, pourcentage, label));
     verifPourcentage();
 }
-
 
 int Matiere::getTotalPourcentage(){
     int totalPourcent = 0;

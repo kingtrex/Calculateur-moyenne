@@ -7,5 +7,5 @@
 /build/fichierNoteCopy.txt
 /build/fichierUeCopy.txt
 /build/fichierMatiereCopy.txt
-
+*.txt
 *.pdf

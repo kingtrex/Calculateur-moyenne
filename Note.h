@@ -1,11 +1,14 @@
+/****************************************************************************************************
+ *                                    Projet: calculateur de moyenne                                *
+ *                                    Auteur: Thibault TANNÉ                                        *
+ *                                          18/05/2023                                              *
+*****************************************************************************************************/
 #ifndef NOTE_H
 #define NOTE_H
 #include "header.h"
 #include "Ue.h"
 class Note: public Ue{
-    private:
-    double note;
-    int pourcentage;
+
     public:
     //constructeur/destructeur
     Note(double note, double pourcentage): note(note), pourcentage(pourcentage){}
@@ -23,6 +26,9 @@ class Note: public Ue{
     std::string getData();
     void modifNote();
 
+    private:
+    double note;
+    int pourcentage;
 };
 
 
