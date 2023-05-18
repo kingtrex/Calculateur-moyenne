@@ -21,6 +21,6 @@ Pour commencer à développer, Il faut:
 -Pour compiler le projet, allez dans le répertoire "build" (ou le nom que vous avez choisi) et entrez la commande "cmake --build ."
 -executer le programme avec ./CalculateurMoyenne.exe (il se peut que le .exe se trouve uniquement dans le repertoire "debug", déplacez les fichierUe/Matiere/Note.txt dans ce même repertoire)
 
-|![Menu principal](https://zupimages.net/up/23/20/lxdb.png)|
-|![](https://zupimages.net/up/23/20/yuzn.png)|
-|![](https://zupimages.net/up/23/20/h1uy.png)|
+![Menu principal](https://zupimages.net/up/23/20/lxdb.png)
+![Affichage des Ue](https://zupimages.net/up/23/20/yuzn.png)
+![Modification des Ue](https://zupimages.net/up/23/20/h1uy.png)
